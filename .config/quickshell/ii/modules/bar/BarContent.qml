@@ -433,15 +433,21 @@ Item { // Bar content region
                 }
 
                 // Weather
-                Loader {
-                    Layout.leftMargin: 8
-                    Layout.fillHeight: true
-                    active: Config.options.bar.weather.enable
-                    sourceComponent: BarGroup {
-                        implicitHeight: Appearance.sizes.baseBarHeight
-                        WeatherBar {}
+                // Loader {
+                //     Layout.leftMargin: 8
+                //     Layout.fillHeight: true
+                //     active: Config.options.bar.weather.enable
+                //     sourceComponent: BarGroup {
+                //         implicitHeight: Appearance.sizes.baseBarHeight
+                //         WeatherBar {}
+                //     }
+                // }
+				   NetworkSpeed {
+                            id: networkSpeed
+                            textColor: "#A7C080"
+                            fontSize: 12
+                            showIcons: true
                     }
-                }
             }
         }
     }

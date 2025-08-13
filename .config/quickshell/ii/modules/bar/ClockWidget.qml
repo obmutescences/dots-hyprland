@@ -19,9 +19,10 @@ Item {
         spacing: 4
 
         StyledText {
-            font.pixelSize: Appearance.font.pixelSize.large
+            visible: root.showDate
+            font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer1
-            text: DateTime.time
+            text: DateTime.date
         }
 
         StyledText {
@@ -32,10 +33,9 @@ Item {
         }
 
         StyledText {
-            visible: root.showDate
-            font.pixelSize: Appearance.font.pixelSize.small
+            font.pixelSize: Appearance.font.pixelSize.large
             color: Appearance.colors.colOnLayer1
-            text: DateTime.date
+            text: DateTime.time
         }
     }
 

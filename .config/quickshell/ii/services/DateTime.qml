@@ -14,8 +14,8 @@ Singleton {
         precision: SystemClock.Minutes
     }
     property string time: Qt.locale().toString(clock.date, Config.options?.time.format ?? "hh:mm")
-    property string date: Qt.locale().toString(clock.date, Config.options?.time.dateFormat ?? "dddd, dd/MM")
-    property string collapsedCalendarFormat: Qt.locale().toString(clock.date, "dd MMMM yyyy")
+	property string date: Qt.locale().toString(clock.date, "MM-dd  dddd")
+    property string collapsedCalendarFormat: Qt.locale().toString(clock.date, "yyyy MMMM dd")
     property string uptime: "0h, 0m"
 
     Timer {
