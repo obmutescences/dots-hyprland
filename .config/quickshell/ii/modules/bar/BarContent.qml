@@ -445,7 +445,7 @@ Item { // Bar content region
 				   NetworkSpeed {
                             id: networkSpeed
                             textColor: "#A7C080"
-                            fontSize: 12
+                            fontSize: Appearance.font.pixelSize.small
                             showIcons: true
                     }
             }

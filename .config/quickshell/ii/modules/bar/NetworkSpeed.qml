@@ -1,3 +1,4 @@
+import qs.modules.common
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -9,7 +10,7 @@ Rectangle {
     // 可自定义属性
     property color textColor: "#A7C080"
     property color backgroundColor: "transparent"
-    property int fontSize: 14
+    property int fontSize: 12
     property bool showIcons: true
     property string iconDown: "↓"
     property string iconUp: "↑"
@@ -18,8 +19,8 @@ Rectangle {
     property real downloadSpeed: 0
     property real uploadSpeed: 0
     
-    implicitWidth: layout.implicitWidth + 16
-    implicitHeight: 10
+    implicitWidth: layout.implicitWidth + 26
+    implicitHeight: 20
     color: backgroundColor
     radius: 4
     
@@ -54,7 +55,7 @@ Rectangle {
                 text: root.showIcons ? root.iconDown : ""
                 color: "#4CAF50"
                 font.pixelSize: root.fontSize
-                font.family: "Comic Code"
+                font.family: Appearance.font.family.main
                 verticalAlignment: Text.AlignVCenter
             }
             
@@ -62,7 +63,7 @@ Rectangle {
                 text: formatSpeed(root.downloadSpeed)
                 color: root.textColor
                 font.pixelSize: root.fontSize
-                font.family: "Comic Code"
+                font.family: Appearance.font.family.main
                 verticalAlignment: Text.AlignVCenter
             }
         }
@@ -83,7 +84,7 @@ Rectangle {
                 text: root.showIcons ? root.iconUp : ""
                 color: "#FF9800"
                 font.pixelSize: root.fontSize
-                font.family: "monospace"
+                font.family: Appearance.font.family.main
                 verticalAlignment: Text.AlignVCenter
             }
             
@@ -91,7 +92,7 @@ Rectangle {
                 text: formatSpeed(root.uploadSpeed)
                 color: root.textColor
                 font.pixelSize: root.fontSize
-                font.family: "monospace"
+                font.family: Appearance.font.family.main
                 verticalAlignment: Text.AlignVCenter
             }
         }
