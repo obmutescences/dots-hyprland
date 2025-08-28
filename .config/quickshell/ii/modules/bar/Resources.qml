@@ -1,16 +1,15 @@
 import qs.modules.common
-import qs.modules.common.widgets
 import qs.services
-import qs
 import QtQuick
 import QtQuick.Layouts
 
-Item {
+MouseArea {
     id: root
     property bool borderless: Config.options.bar.borderless
     property bool alwaysShowAllResources: false
     implicitWidth: rowLayout.implicitWidth + rowLayout.anchors.leftMargin + rowLayout.anchors.rightMargin
-    implicitHeight: 32
+    implicitHeight: Appearance.sizes.barHeight
+    hoverEnabled: true
 
     RowLayout {
         id: rowLayout
@@ -23,20 +22,13 @@ Item {
         Resource {
             iconName: "memory"
             percentage: ResourceUsage.memoryUsedPercentage
-
-            tooltipHeaderIcon: "memory"
-            tooltipHeaderText: Translation.tr("Memory usage")
-            tooltipData: [
-                { icon: "clock_loader_60", label: Translation.tr("Used:"), value: formatKB(ResourceUsage.memoryUsed) },
-                { icon: "check_circle", label: Translation.tr("Free:"), value: formatKB(ResourceUsage.memoryFree) },
-                { icon: "empty_dashboard", label: Translation.tr("Total:"), value: formatKB(ResourceUsage.memoryTotal) },
-            ]
+            warningThreshold: Config.options.bar.resources.memoryWarningThreshold
         }
 
         // Resource {
         //     iconName: "swap_horiz"
         //     percentage: ResourceUsage.swapUsedPercentage
-        //     shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
+        //     shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) ||
         //         (MprisController.activePlayer?.trackTitle == null) ||
         //         root.alwaysShowAllResources
         //     Layout.leftMargin: shown ? 6 : 0
@@ -55,22 +47,16 @@ Item {
         Resource {
             iconName: "planner_review"
             percentage: ResourceUsage.cpuUsage
-            shown: Config.options.bar.resources.alwaysShowCpu || 
+            shown: Config.options.bar.resources.alwaysShowCpu ||
                 !(MprisController.activePlayer?.trackTitle?.length > 0) ||
                 root.alwaysShowAllResources
             Layout.leftMargin: shown ? 6 : 0
-
-            tooltipHeaderIcon: "planner_review"
-            tooltipHeaderText: Translation.tr("CPU usage")
-            tooltipData: [
-                { icon: "bolt", label: Translation.tr("Load:"), value: (ResourceUsage.cpuUsage > 0.8 ?
-                    Translation.tr("High") :
-                    ResourceUsage.cpuUsage > 0.4 ? Translation.tr("Medium") : Translation.tr("Low"))
-                    + ` (${Math.round(ResourceUsage.cpuUsage * 100)}%)`
-                }
-            ]
+            warningThreshold: Config.options.bar.resources.cpuWarningThreshold
         }
 
     }
 
+    ResourcesPopup {
+        hoverTarget: root
+    }
 }
